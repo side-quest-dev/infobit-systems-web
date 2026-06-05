@@ -1,0 +1,123 @@
+@use '@/styles/tokens' as t;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+
+  @include t.respond(t.$breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.label {
+  font-family: t.$font-family-label;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: t.$color-text-secondary;
+  text-transform: uppercase;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 0.82rem 1rem;
+  background: t.$color-surface-secondary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: 9px;
+  color: t.$color-text-primary;
+  font-family: t.$font-family-sans;
+  font-size: 0.9rem;
+  font-weight: 450;
+  transition: border-color t.$transition-base, box-shadow t.$transition-base;
+  outline: none;
+  appearance: none;
+
+  &:focus {
+    border-color: t.$color-accent-blue;
+    box-shadow: 0 0 0 3px t.$color-accent-blue-dim;
+  }
+
+  &::placeholder {
+    color: t.$color-text-muted;
+  }
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.error {
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+.submit {
+  width: 100%;
+  padding: 1.05rem;
+  background: t.$color-text-primary;
+  color: t.$color-bg-primary;
+  border: none;
+  border-radius: 9px;
+  font-family: t.$font-family-sans;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background t.$transition-base, transform t.$transition-base, box-shadow t.$transition-base;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background: t.$color-accent-blue;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px t.$color-accent-blue-glow;
+  }
+
+  &:disabled {
+    background: t.$color-surface-secondary;
+    color: t.$color-text-secondary;
+    cursor: not-allowed;
+  }
+}
+
+.success {
+  background: rgba(45, 212, 191, 0.06);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: t.$radius-md;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.successIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.successTitle {
+  font-family: t.$font-family-serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.successText {
+  color: t.$color-text-secondary;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}

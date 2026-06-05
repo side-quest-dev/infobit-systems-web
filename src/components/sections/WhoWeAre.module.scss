@@ -1,0 +1,140 @@
+@use '@/styles/tokens' as t;
+
+.section {
+  padding: 8.5rem 0;
+  background: t.$color-bg-secondary;
+  border-top: 1px solid t.$color-border-primary;
+  border-bottom: 1px solid t.$color-border-primary;
+  position: relative;
+  z-index: 2;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+
+  @include t.respond(t.$breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.body {
+  font-size: 0.95rem;
+  color: t.$color-text-secondary;
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+}
+
+.signals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.signal {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.25rem;
+  background: t.$color-bg-secondary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: t.$radius-md;
+  transition: all t.$transition-base;
+
+  &:hover {
+    border-color: rgba(91, 141, 238, 0.3);
+    background: t.$color-surface-secondary;
+  }
+}
+
+.signalIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: t.$color-accent-blue-dim;
+  border: 1px solid rgba(91, 141, 238, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: t.$color-accent-blue;
+}
+
+.signalTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.signalDesc {
+  font-size: 0.8rem;
+  color: t.$color-text-secondary;
+  line-height: 1.55;
+}
+
+// Right column
+.experienceCard {
+  background: t.$color-bg-secondary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: t.$radius-md;
+  padding: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cardTitle {
+  font-family: t.$font-family-serif;
+  font-style: italic;
+  font-size: 1.55rem;
+  margin-bottom: 1.75rem;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.entry {
+  padding-left: 1.2rem;
+  border-left: 2px solid t.$color-border-secondary;
+}
+
+.entryTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.entryDesc {
+  font-size: 0.82rem;
+  color: t.$color-text-secondary;
+  line-height: 1.6;
+}
+
+.positionNote {
+  background: linear-gradient(135deg, rgba(91, 141, 238, 0.06), rgba(45, 212, 191, 0.04));
+  border: 1px solid rgba(91, 141, 238, 0.2);
+  border-radius: t.$radius-md;
+  padding: 1.75rem;
+}
+
+.noteLabel {
+  font-family: t.$font-family-label;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: t.$color-accent-teal;
+  margin-bottom: 0.65rem;
+}
+
+.noteText {
+  font-size: 0.875rem;
+  color: t.$color-text-secondary;
+  line-height: 1.75;
+  font-style: italic;
+}

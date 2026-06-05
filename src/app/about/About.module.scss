@@ -1,0 +1,209 @@
+@use '@/styles/tokens' as t;
+
+.story {
+  padding: 6rem 0;
+  background: t.$color-surface-primary;
+  border-top: 1px solid t.$color-border-primary;
+  border-bottom: 1px solid t.$color-border-primary;
+  position: relative;
+  z-index: 2;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+
+  @include t.respond(t.$breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.storyTag {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: t.$font-family-label;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: t.$color-accent-blue;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+
+  span {
+    width: 18px;
+    height: 1px;
+    background: t.$color-accent-blue;
+    display: inline-block;
+  }
+}
+
+.storyHeading {
+  font-family: t.$font-family-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+
+  em {
+    font-style: italic;
+  }
+}
+
+.storyBody {
+  font-size: 0.95rem;
+  color: t.$color-text-secondary;
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+// Values section
+.values {
+  padding: 8rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+
+  @include t.respond(t.$breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valueCard {
+  background: t.$color-surface-primary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: t.$radius-md;
+  padding: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: all t.$transition-base;
+
+  &:hover {
+    background: t.$color-surface-secondary;
+    border-color: t.$color-border-secondary;
+    transform: translateY(-3px);
+  }
+}
+
+.valueIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: t.$color-accent-blue-dim;
+  border: 1px solid rgba(91, 141, 238, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: t.$color-accent-blue;
+}
+
+.valueTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.valueDesc {
+  font-size: 0.86rem;
+  color: t.$color-text-secondary;
+  line-height: 1.7;
+}
+
+// CTA
+.cta {
+  padding: 8rem 0;
+  background: t.$color-surface-primary;
+  border-top: 1px solid t.$color-border-primary;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.ctaHeading {
+  font-family: t.$font-family-serif;
+  font-style: italic;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.025em;
+}
+
+.ctaDesc {
+  color: t.$color-text-secondary;
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+.expCard {
+  background: t.$color-bg-primary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: t.$radius-md;
+  padding: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.expCardTitle {
+  font-family: t.$font-family-serif;
+  font-style: italic;
+  font-size: 1.55rem;
+  margin-bottom: 1.75rem;
+}
+
+.expEntries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.expEntry {
+  padding-left: 1.2rem;
+  border-left: 2px solid t.$color-border-secondary;
+}
+
+.expEntryTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.expEntryDesc {
+  font-size: 0.82rem;
+  color: t.$color-text-secondary;
+  line-height: 1.6;
+}
+
+.posNote {
+  background: linear-gradient(135deg, rgba(91, 141, 238, 0.06), rgba(45, 212, 191, 0.04));
+  border: 1px solid rgba(91, 141, 238, 0.2);
+  border-radius: t.$radius-md;
+  padding: 1.75rem;
+}
+
+.posNoteLabel {
+  font-family: t.$font-family-label;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: t.$color-accent-teal;
+  margin-bottom: 0.65rem;
+}
+
+.posNoteText {
+  font-size: 0.875rem;
+  color: t.$color-text-secondary;
+  line-height: 1.75;
+  font-style: italic;
+}

@@ -1,0 +1,89 @@
+@use '@/styles/tokens' as t;
+
+.section {
+    padding: 4rem 0 10rem;
+    position: relative;
+    z-index: 2;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.row {
+    background: t.$color-surface-primary;
+    border: 1px solid t.$color-border-primary;
+    border-radius: t.$radius-md;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: all t.$transition-base;
+
+    &:hover {
+        background: t.$color-surface-secondary;
+        border-color: rgba(91, 141, 238, 0.3);
+        transform: translateX(4px);
+    }
+
+    @include t.respond(t.$breakpoint-md) {
+        grid-template-columns: 2.5rem 1fr;
+        padding: 1.75rem;
+
+        .arrow {
+            display: none;
+        }
+    }
+}
+
+.icon {
+    &.blue {
+        color: t.$color-accent-blue;
+    }
+
+    &.teal {
+        color: t.$color-accent-teal;
+    }
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.rowHead {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.num {
+    font-family: t.$font-family-label;
+    font-size: 0.65rem;
+    color: t.$color-text-muted;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.desc {
+    font-size: 0.9rem;
+    color: t.$color-text-secondary;
+    line-height: 1.7;
+}
+
+.arrow {
+    color: t.$color-accent-blue;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}

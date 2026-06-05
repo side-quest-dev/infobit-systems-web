@@ -1,0 +1,76 @@
+@use '@/styles/tokens' as t;
+
+.hero {
+  padding-top: 10rem;
+  padding-bottom: 6rem;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: t.$font-family-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: t.$color-accent-blue;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrowLine {
+  width: 18px;
+  height: 1px;
+  background: t.$color-accent-blue;
+  display: inline-block;
+}
+
+.h1 {
+  font-family: t.$font-family-serif;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+
+  em {
+    font-style: italic;
+    color: t.$color-accent-blue;
+  }
+}
+
+.desc {
+  font-size: 1.15rem;
+  color: t.$color-text-secondary;
+  line-height: 1.85;
+  max-width: 620px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  color: t.$color-text-muted;
+}
+
+.breadcrumbLink {
+  color: t.$color-text-muted;
+  text-decoration: none;
+  transition: color t.$transition-fast;
+
+  &:hover {
+    color: t.$color-text-secondary;
+  }
+}
+
+.breadcrumbSep {
+  color: t.$color-text-muted;
+}
+
+.breadcrumbCurrent {
+  color: t.$color-text-secondary;
+}

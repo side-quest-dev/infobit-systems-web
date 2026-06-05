@@ -1,0 +1,187 @@
+@use '@/styles/tokens' as t;
+@use 'sass:color';
+
+.section {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    position: relative;
+    z-index: 2;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+
+    @include t.respond(t.$breakpoint-lg) {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: t.$font-family-label;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: t.$color-accent-blue;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+
+    span {
+        width: 18px;
+        height: 1px;
+        background: t.$color-accent-blue;
+        display: inline-block;
+    }
+}
+
+.h1 {
+    font-family: t.$font-family-serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+
+    em {
+        font-style: italic;
+        color: t.$color-accent-blue;
+    }
+}
+
+.intro {
+    font-size: 1rem;
+    color: t.$color-text-secondary;
+    line-height: 1.85;
+    margin-bottom: 3rem;
+    max-width: 420px;
+}
+
+.signals {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 3rem;
+}
+
+.signal {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background: t.$color-surface-primary;
+    border: 1px solid t.$color-border-primary;
+    border-radius: t.$radius-md;
+    transition: all t.$transition-base;
+
+    &:hover {
+        background: t.$color-surface-secondary;
+        border-color: t.$color-border-secondary;
+    }
+}
+
+.signalIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: t.$color-accent-blue-dim;
+    border: 1px solid rgba(91, 141, 238, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: t.$color-accent-blue;
+}
+
+.signalTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.signalDesc {
+    font-size: 0.82rem;
+    color: t.$color-text-secondary;
+    line-height: 1.6;
+}
+
+.whenBox {
+    background: t.$color-surface-primary;
+    border: 1px solid t.$color-border-primary;
+    border-radius: t.$radius-md;
+    padding: 2rem;
+}
+
+.whenTitle {
+    font-family: t.$font-family-label;
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: t.$color-accent-teal;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.whenList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.whenItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: t.$color-text-secondary;
+
+    &::before {
+        content: '→';
+        color: t.$color-accent-blue;
+        font-size: 0.7rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+    }
+}
+
+.directContact {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid t.$color-border-primary;
+}
+
+.directLabel {
+    font-family: t.$font-family-label;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: t.$color-text-muted;
+    margin-bottom: 0.75rem;
+}
+
+.directEmail {
+    color: t.$color-accent-blue;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color t.$transition-fast;
+
+    &:hover {
+        // color: lighten(#5b8dee, 10%);
+        color: color.adjust(#5b8dee, $lightness: 10%);
+    }
+}
+
+// Form card
+.formCard {
+    background: t.$color-surface-primary;
+    border: 1px solid t.$color-border-primary;
+    border-radius: t.$radius-md;
+    padding: 2.5rem;
+}

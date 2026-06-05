@@ -1,0 +1,143 @@
+@use '@/styles/tokens' as t;
+@include t.keyframes;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GRID BACKGROUND
+// ─────────────────────────────────────────────────────────────────────────────
+
+.gridBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(91, 141, 238, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 141, 238, 0.06) 1px, transparent 1px);
+
+  background-size: 64px 64px;
+
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%,
+      black 30%,
+      transparent 100%);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ORB BASE (shared)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+
+  filter: blur(160px);
+  opacity: 0;
+
+  mix-blend-mode: screen;
+
+  // soft fade edges (ultra important for premium feel)
+  mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+
+  // Promote to own GPU layer — browser won't repaint surrounding content
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+// Per-orb target opacity via CSS custom property — avoids cascade override of opacity: 0
+.orb1 { --orb-opacity: 0.5; }
+.orb2 { --orb-opacity: 0.4; }
+.orb3 { --orb-opacity: 0.25; }
+
+@keyframes orb-fade-in {
+  from { opacity: 0; }
+  to   { opacity: var(--orb-opacity, 0.4); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ORB 1 — BLUE (primary glow)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.orb1 {
+  width: 720px;
+  height: 720px;
+  top: -220px;
+  right: -160px;
+
+  background:
+    radial-gradient(circle at 30% 30%,
+      t.$color-accent-blue-glow,
+      transparent 60%),
+    radial-gradient(circle at 70% 70%,
+      t.$color-accent-blue-dim,
+      transparent 70%);
+
+  animation:
+    orb-fade-in 1s ease 0.6s forwards,
+    orb-drift 32s ease-in-out 0.6s infinite;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ORB 2 — TEAL (contrast)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.orb2 {
+  width: 520px;
+  height: 520px;
+  bottom: -40px;
+  left: -120px;
+
+  background:
+    radial-gradient(circle at 40% 40%,
+      t.$color-accent-teal,
+      transparent 65%),
+    radial-gradient(circle at 60% 60%,
+      t.$color-accent-teal-dim,
+      transparent 75%);
+
+  animation:
+    orb-fade-in 1s ease 0.6s forwards,
+    orb-drift 32s ease-in-out -15.4s infinite;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ORB 3 — EXTRA DEPTH
+// ─────────────────────────────────────────────────────────────────────────────
+
+.orb3 {
+  width: 600px;
+  height: 600px;
+  top: 40%;
+  left: 40%;
+
+  background:
+    radial-gradient(circle,
+      t.$color-accent-blue-dim,
+      transparent 70%);
+
+  animation:
+    orb-fade-in 1s ease 0.6s forwards,
+    orb-drift 40s ease-in-out 0.6s infinite;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RESPONSIVE TWEAKS
+// ─────────────────────────────────────────────────────────────────────────────
+
+@include t.respond(t.$breakpoint-md) {
+  .orb1 { width: 500px; height: 500px; }
+  .orb2 { width: 380px; height: 380px; }
+  .orb3 { width: 420px; height: 420px; }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PERFORMANCE OPTIMIZATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Disable heavy effects on very small devices
+@include t.respond(t.$breakpoint-sm) {
+  .orb {
+    filter: blur(100px);
+  }
+}

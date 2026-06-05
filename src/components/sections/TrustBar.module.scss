@@ -1,0 +1,57 @@
+@use '@/styles/tokens' as t;
+
+.bar {
+    border-top: 1px solid t.$color-border-primary;
+    border-bottom: 1px solid t.$color-border-primary;
+    background: t.$color-bg-secondary;
+    padding: 2.5rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    @include t.respond(t.$breakpoint-md) {
+        justify-content: center;
+    }
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+}
+
+.value {
+    font-family: t.$font-family-serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    line-height: 1;
+    @include t.gradient-text;
+}
+
+.label {
+    font-family: t.$font-family-label;
+    font-size: 0.7rem;
+    color: t.$color-text-secondary;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.sep {
+    width: 1px;
+    height: 42px;
+    background: t.$color-border-secondary;
+
+    @include t.respond(t.$breakpoint-md) {
+        display: none;
+    }
+}

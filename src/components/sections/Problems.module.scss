@@ -1,0 +1,135 @@
+@use '@/styles/tokens' as t;
+
+.section {
+  padding: 8.5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+
+  @include t.respond(t.$breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  @include t.card-base;
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, t.$color-accent-blue, t.$color-accent-teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.icon {
+  color: t.$color-accent-blue;
+  margin-bottom: 1.4rem;
+}
+
+.question {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  line-height: 1.4;
+}
+
+.answer {
+  font-size: 0.88rem;
+  color: t.$color-text-secondary;
+  line-height: 1.75;
+}
+
+// Wide highlight card
+.wideCard {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(91, 141, 238, 0.06), rgba(45, 212, 191, 0.04));
+  border: 1px solid rgba(91, 141, 238, 0.2);
+  border-radius: t.$radius-lg;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+
+  @include t.respond(t.$breakpoint-md) {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+}
+
+.wideTag {
+  font-family: t.$font-family-label;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: t.$color-accent-teal;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.wideHeading {
+  font-family: t.$font-family-serif;
+  font-style: italic;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.wideText {
+  color: t.$color-text-secondary;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.bulletDot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: t.$color-accent-blue-dim;
+  border: 1px solid rgba(91, 141, 238, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  &::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: t.$color-accent-blue;
+  }
+}

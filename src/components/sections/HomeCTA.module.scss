@@ -1,0 +1,42 @@
+@use '@/styles/tokens' as t;
+
+.section {
+    padding: 10rem 0;
+    text-align: center;
+    background: t.$color-bg-secondary;
+    border-top: 1px solid t.$color-border-primary;
+    border-bottom: 1px solid t.$color-border-primary;
+    position: relative;
+    z-index: 2;
+}
+
+.inner {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.heading {
+    font-family: t.$font-family-serif;
+    font-style: italic;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+}
+
+.sub {
+    color: t.$color-text-secondary;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.8;
+}
+
+.note {
+    font-size: 0.8rem;
+    color: t.$color-text-secondary;
+    margin-bottom: 3rem;
+
+    span {
+        color: t.$color-text-primary;
+    }
+}

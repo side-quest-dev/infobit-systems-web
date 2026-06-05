@@ -1,0 +1,94 @@
+@use '@/styles/tokens' as t;
+
+.footer {
+    border-top: 1px solid t.$color-border-primary;
+    background: t.$color-surface-primary;
+    padding: 4rem 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3.5rem;
+    margin-bottom: 3rem;
+
+    @include t.respond(t.$breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.brand {
+    .p {
+        font-size: 0.875rem;
+        color: t.$color-text-secondary;
+        line-height: 1.75;
+        margin-top: 1rem;
+        min-width: 280px;
+    }
+}
+
+// h2 used for semantic heading order within footer landmark
+.colTitle {
+    font-family: t.$font-family-label;
+    font-size: 0.66rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: t.$color-text-secondary;
+    margin-bottom: 1.2rem;
+}
+
+.linkList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.link {
+    color: t.$color-text-secondary;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color t.$transition-fast, padding-left t.$transition-fast;
+
+    &:hover {
+        color: t.$color-text-primary;
+        padding-left: 4px;
+    }
+}
+
+.bottom {
+    border-top: 1px solid t.$color-border-primary;
+    padding-top: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: t.$color-text-secondary;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    @include t.respond(t.$breakpoint-md) {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.socials {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.socialLink {
+    color: t.$color-text-secondary;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color t.$transition-fast;
+
+    &:hover {
+        color: t.$color-accent-blue;
+    }
+}

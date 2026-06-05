@@ -1,0 +1,144 @@
+@use '@/styles/tokens' as t;
+@include t.keyframes;
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+
+    @include t.respond(t.$breakpoint-lg) {
+        padding-bottom: 5rem;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+
+    @include t.respond(t.$breakpoint-lg) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.content {
+    max-width: 560px;
+
+    @include t.respond(t.$breakpoint-lg) {
+        max-width: 100%;
+    }
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: t.$font-family-label;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: t.$color-accent-blue;
+    font-weight: 700;
+    margin-bottom: 2.25rem;
+    animation: rise 0.7s ease 0.15s both;
+}
+
+.eyebrowLine {
+    width: 26px;
+    height: 1px;
+    background: t.$color-accent-blue;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.h1 {
+    font-family: t.$font-family-serif;
+    font-weight: 400;
+    font-size: clamp(3.4rem, 7.5vw, 6rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.75rem;
+    animation: rise-solid 0.7s ease 0s both;
+
+    em {
+        font-style: italic;
+        color: t.$color-accent-blue;
+    }
+}
+
+.sub {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: t.$color-text-secondary;
+    line-height: 1.85;
+    max-width: 520px;
+    margin-bottom: 2rem;
+    animation: rise 0.7s ease 0.45s both;
+}
+
+.stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.75rem;
+    animation: rise 0.7s ease 0.58s both;
+}
+
+.pill {
+    padding: 0.32rem 0.8rem;
+    border-radius: 6px;
+    background: t.$color-surface-secondary;
+    border: 1px solid t.$color-border-secondary;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: t.$color-text-secondary;
+    transition: all t.$transition-fast;
+
+    &:hover {
+        border-color: t.$color-accent-blue;
+        color: t.$color-accent-blue;
+        background: t.$color-accent-blue-dim;
+    }
+}
+
+.btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: rise 0.7s ease 0.72s both;
+}
+
+.graphicWrap {
+    width: 100%;
+    height: 70%;
+    min-height: 500px;
+    position: relative;
+    animation: rise 0.7s ease 0.72s both;
+}
+
+.scrollCue {
+    position: absolute;
+    bottom: 3rem;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: t.$color-text-muted;
+}
+
+.scrollLine {
+    width: 36px;
+    height: 1px;
+    background: t.$color-text-muted;
+    display: inline-block;
+    animation: cueAnim 2s ease infinite;
+}

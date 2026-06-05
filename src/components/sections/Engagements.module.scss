@@ -1,0 +1,103 @@
+@use '@/styles/tokens' as t;
+
+.section {
+  padding: 8.5rem 0;
+  background: t.$color-bg-secondary;
+  border-top: 1px solid t.$color-border-primary;
+  border-bottom: 1px solid t.$color-border-primary;
+  position: relative;
+  z-index: 2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+
+  @include t.respond(t.$breakpoint-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: t.$color-bg-secondary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: t.$radius-md;
+  padding: 2.25rem;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, t.$color-accent-blue, t.$color-accent-teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  &:hover {
+    background: t.$color-surface-primary;
+    border-color: t.$color-border-secondary;
+    transform: translateY(-5px);
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.badge {
+  display: inline-block;
+  font-family: t.$font-family-label;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: t.$color-accent-blue;
+  background: t.$color-accent-blue-dim;
+  border: 1px solid rgba(91, 141, 238, 0.2);
+  border-radius: 5px;
+  padding: 0.25rem 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.desc {
+  font-size: 0.875rem;
+  color: t.$color-text-secondary;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  font-size: 0.82rem;
+  color: t.$color-text-secondary;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  &::before {
+    content: '→';
+    color: t.$color-accent-blue;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+}

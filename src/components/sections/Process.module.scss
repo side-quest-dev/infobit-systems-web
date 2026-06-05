@@ -1,0 +1,87 @@
+@use '@/styles/tokens' as t;
+
+.section {
+  padding: 8.5rem 0;
+  background: t.$color-bg-secondary;
+  border-top: 1px solid t.$color-border-primary;
+  border-bottom: 1px solid t.$color-border-primary;
+  position: relative;
+  z-index: 2;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 2.15rem;
+    left: 8%;
+    right: 8px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, t.$color-border-secondary, t.$color-border-secondary, transparent);
+  }
+
+  @include t.respond(t.$breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  @include t.respond(t.$breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.25rem;
+}
+
+.num {
+  width: 4.3rem;
+  height: 4.3rem;
+  border-radius: 50%;
+  background: t.$color-surface-primary;
+  border: 1px solid t.$color-border-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: t.$font-family-serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  color: t.$color-text-secondary;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  transition: all t.$transition-base;
+
+  .step:hover & {
+    background: t.$color-accent-blue-dim;
+    border-color: t.$color-accent-blue;
+    color: t.$color-accent-blue;
+    box-shadow: 0 0 24px t.$color-accent-blue-glow;
+  }
+}
+
+.title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.desc {
+  font-size: 0.82rem;
+  color: t.$color-text-secondary;
+  line-height: 1.65;
+}

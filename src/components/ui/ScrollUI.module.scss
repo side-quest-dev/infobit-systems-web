@@ -1,0 +1,44 @@
+@use '@/styles/tokens' as t;
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: t.$color-accent-blue;
+  z-index: 9000;
+  width: 0;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+.btt {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 42px;
+  height: 42px;
+  background: t.$color-surface-primary;
+  border: 1px solid t.$color-border-primary;
+  border-radius: t.$radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 700;
+  color: t.$color-text-secondary;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity t.$transition-base, transform t.$transition-base, border-color t.$transition-base, color t.$transition-base;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    border-color: t.$color-accent-blue;
+    color: t.$color-accent-blue;
+  }
+}

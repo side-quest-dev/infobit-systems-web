@@ -1,0 +1,88 @@
+@use '@/styles/tokens' as t;
+
+.section {
+    padding: 8.5rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+
+    @include t.respond(t.$breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+.sticky {
+    // position: sticky;
+    top: 8rem;
+
+    // @include t.respond(t.$breakpoint-lg) {
+    //     position: static;
+    // }
+}
+
+.groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+
+    @include t.respond(t.$breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.group {
+    background: t.$color-surface-primary;
+    border: 1px solid t.$color-border-primary;
+    border-radius: t.$radius-md;
+    padding: 1.75rem;
+    transition: all t.$transition-base;
+
+    &:hover {
+        border-color: t.$color-border-secondary;
+        transform: translateY(-3px);
+    }
+}
+
+.groupTag {
+    font-family: t.$font-family-label;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: t.$color-accent-blue;
+    margin-bottom: 1.2rem;
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.row {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: t.$color-text-secondary;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    transition: color t.$transition-fast;
+    cursor: default;
+
+    &:hover {
+        color: t.$color-text-primary;
+    }
+}
+
+.dash {
+    font-size: 0.6rem;
+    ;
+    color: t.$color-text-muted;
+}

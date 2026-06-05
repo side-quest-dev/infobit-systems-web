@@ -1,0 +1,43 @@
+@use '@/styles/tokens' as t;
+
+.sh {
+  margin-bottom: 4rem;
+
+  &.center {
+    text-align: center;
+
+    .tag {
+      justify-content: center;
+    }
+
+    .desc {
+      margin: 0 auto;
+    }
+  }
+}
+
+.tag {
+  @include t.section-tag;
+  margin-bottom: 1rem;
+}
+
+.h2 {
+  font-family: t.$font-family-serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.2rem;
+
+  em {
+    font-style: italic;
+    color: t.$color-accent-blue;
+  }
+}
+
+.desc {
+  font-size: 1.05rem;
+  color: t.$color-text-secondary;
+  line-height: 1.8;
+  max-width: 600px;
+}

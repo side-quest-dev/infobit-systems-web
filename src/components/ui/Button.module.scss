@@ -1,0 +1,74 @@
+@use '@/styles/tokens' as t;
+@use 'sass:color';
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: t.$font-family-sans;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all t.$transition-base;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.primary {
+    background: t.$color-text-primary;
+    color: t.$color-bg-primary;
+    border-color: t.$color-text-primary;
+
+    &:hover {
+        background: t.$color-accent-blue;
+        color: #fff;
+        border-color: t.$color-accent-blue;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px t.$color-accent-blue-glow;
+    }
+}
+
+.secondary {
+    background: transparent;
+    color: t.$color-text-primary;
+    border-color: t.$color-border-secondary;
+
+    &:hover {
+        background: t.$color-surface-primary;
+        border-color: t.$color-text-muted;
+        transform: translateY(-2px);
+    }
+}
+
+.ghost {
+    background: transparent;
+    color: t.$color-accent-blue;
+    border-color: transparent;
+    padding: 0;
+
+    &:hover {
+        color: color.adjust(t.$color-accent-blue, $lightness: 10%);
+    }
+}
+
+.small {
+    padding: 0.52rem 1.2rem;
+    font-size: 0.85rem;
+}
+
+.large {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.arrow {
+    transition: transform t.$transition-base;
+
+    .button:hover & {
+        transform: translateX(4px);
+    }
+}

@@ -1,0 +1,225 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Design Tokens — import via @use
+// ─────────────────────────────────────────────────────────────────────────────
+
+
+// COLORS
+
+// Background
+$color-bg-primary: #080809; // Main app background (base — A sections, orbs visible)
+$color-bg-secondary: #0e0f15; // Panel background (B sections, alternating bands)
+
+// Surface
+$color-surface-primary: #15161d; // Cards, containers (floats above panels)
+$color-surface-secondary: #1e1f27; // Hover / elevated surfaces
+
+// Border
+$color-border-primary: #242530; // Default border
+$color-border-secondary: #313340; // Hover / active border
+
+// Text
+$color-text-primary: #f2f2f3; // Main text
+$color-text-secondary: #a0a0b2; // Secondary text
+$color-text-muted: #404050; // Disabled / subtle text
+
+// Accent
+$color-accent-blue: #5b8dee; // Primary accent
+$color-accent-blue-dim: rgba(91, 141, 238, 0.09); // Soft background tint
+$color-accent-blue-glow: rgba(91, 141, 238, 0.25); // Glow / focus effect
+
+$color-accent-teal: #2dd4bf; // Secondary accent
+$color-accent-teal-dim: rgba(45, 212, 191, 0.08); // Soft teal background
+
+
+// TYPOGRAPHY
+
+$font-family-serif: var(--font-cormorant), Georgia, serif; // Headings / editorial
+$font-family-sans: var(--font-dm-sans), system-ui, sans-serif; // Body text
+$font-family-label: var(--font-syne), system-ui, sans-serif; // Labels / UI accents
+
+
+// SPACING
+
+$space-xs: 0.25rem; // 4px
+$space-sm: 0.5rem; // 8px
+$space-md: 1rem; // 16px
+$space-lg: 2rem; // 32px
+$space-xl: 4rem; // 64px
+$space-2xl: 8rem; // 128px
+
+
+// RADIUS
+
+$radius-sm: 8px; // Small elements
+$radius-md: 12px; // Default radius
+$radius-lg: 20px; // Large containers
+
+
+// BREAKPOINTS
+
+$breakpoint-sm: 480px; // Mobile
+$breakpoint-md: 768px; // Tablet
+$breakpoint-lg: 1024px; // Small desktop
+$breakpoint-xl: 1280px; // Large desktop
+
+
+// TRANSITIONS
+
+$transition-fast: 0.15s ease; // Micro interactions
+$transition-base: 0.25s ease; // Default transitions
+$transition-slow: 0.4s ease; // Emphasized animations
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MIXINS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Responsive helper (max-width)
+@mixin respond($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+
+// Centering utility (flexbox)
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+// Label typography style
+@mixin label-style {
+  font-family: $font-family-label;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: $color-accent-blue;
+}
+
+
+// Section label with decorative line
+@mixin section-tag {
+  @include label-style;
+
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: $space-md;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: $color-accent-blue;
+  }
+}
+
+
+// Base card styling
+@mixin card-base {
+  background: $color-surface-primary;
+  border: 1px solid $color-border-primary;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-surface-secondary;
+    border-color: $color-border-secondary;
+    transform: translateY(-3px);
+  }
+}
+
+
+// Glow effect for focus / active states
+@mixin glow-border($color: $color-accent-blue, $opacity: 0.3) {
+  border-color: rgba(red($color), green($color), blue($color), $opacity);
+  box-shadow: 0 0 0 3px rgba(red($color), green($color), blue($color), 0.08);
+}
+
+
+// Gradient text utility
+@mixin gradient-text($from: $color-text-primary, $to: $color-text-secondary) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ANIMATIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Include where animations are needed
+@mixin keyframes {
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    // Entry start
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    // Entry end
+  }
+
+  // LCP-safe entrance: transform only, never starts at opacity 0.
+  // Used for the largest above-the-fold element so Chrome can register
+  // it as the LCP candidate on first paint instead of waiting out a fade.
+  @keyframes rise-solid {
+    from {
+      transform: translateY(20px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes orb-drift {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    // Base position
+    40% {
+      transform: translate(55px, -70px);
+    }
+
+    // Drift up-right
+    70% {
+      transform: translate(-45px, 55px);
+    }
+
+    // Drift down-left
+  }
+
+  @keyframes cue {
+
+    0%,
+    100% {
+      width: 36px;
+      opacity: 1;
+    }
+
+    // Full width
+    50% {
+      width: 14px;
+      opacity: 0.4;
+    }
+
+    // Pulse state
+  }
+}
