@@ -50,7 +50,7 @@ export default function Button({
             : {}
 
         return (
-            <Link href={href} className={classes} {...linkProps}>
+            <Link href={href} className={classes} onClick={onClick} {...linkProps}>
                 {content}
             </Link>
         );

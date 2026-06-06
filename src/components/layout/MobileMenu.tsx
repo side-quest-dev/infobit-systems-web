@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { siteConfig } from '@/lib/config'
 import Button from '../ui/Button'
@@ -10,6 +11,15 @@ export default function MobileMenu() {
     const [open, setOpen] = useState(false)
     const menuRef = useRef<HTMLDivElement>(null)
     const buttonRef = useRef<HTMLButtonElement>(null)
+    const pathname = usePathname()
+
+    // Close the menu on route change — covers navigation from outside this
+    // component (e.g. the logo). In-menu links already close via onClick.
+    // Syncing UI to the router is a legitimate effect here.
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setOpen(false)
+    }, [pathname])
 
     // Close on Escape key
     useEffect(() => {

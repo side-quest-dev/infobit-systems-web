@@ -13,7 +13,7 @@ const cormorant = Cormorant_Garamond({
   weight: ['400'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
-  display: 'swap',
+  display: 'optional',
   preload: true,
 })
 
@@ -21,7 +21,7 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-dm-sans',
-  display: 'swap',
+  display: 'optional',
   preload: true,
 })
 
@@ -29,8 +29,8 @@ const syne = Syne({
   subsets: ['latin'],
   weight: ['600', '700'],
   variable: '--font-syne',
-  display: 'swap',
-  preload: false,
+  display: 'optional',
+  preload: true,
 })
 
 export const metadata: Metadata = {

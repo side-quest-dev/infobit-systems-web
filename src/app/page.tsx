@@ -27,14 +27,14 @@ export default function HomePage() {
         <TrustBar />
         <Problems />
         <ServicesGrid />
-        <div className="offscreen"><Expertise /></div>
-        <div className="offscreen"><Engagements /></div>
-        <div className="offscreen"><Industries /></div>
-        <div className="offscreen"><Process /></div>
-        <div className="offscreen"><Manifesto /></div>
-        <div className="offscreen"><WhoWeAre /></div>
-        <div className="offscreen"><FAQ /></div>
-        <div className="offscreen"><HomeCTA /></div>
+        <Expertise />
+        <Engagements />
+        <Industries />
+        <Process />
+        <Manifesto />
+        <WhoWeAre />
+        <FAQ />
+        <HomeCTA />
       </main>
     </>
   );

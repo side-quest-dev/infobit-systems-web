@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { prefersReducedMotion, observeVisibility } from '@/lib/canvasMotion'
 
 interface Pod { x: number; y: number; label: string; status: 'ok' | 'scale' | 'pending'; node: number }
 
@@ -187,8 +188,20 @@ export default function ClusterGraphic() {
     const ro = new ResizeObserver(resize)
     const canvasEl = canvasRef.current
     if (canvasEl?.parentElement) ro.observe(canvasEl.parentElement)
-    rafRef.current = requestAnimationFrame(draw)
-    return () => { cancelAnimationFrame(rafRef.current); ro.disconnect() }
+
+    // Pause the loop when off-screen + honor reduced-motion
+    let running = false
+    const start = () => { if (!running) { running = true; rafRef.current = requestAnimationFrame(draw) } }
+    const stop = () => { running = false; cancelAnimationFrame(rafRef.current) }
+    let cleanupVis = () => {}
+    if (prefersReducedMotion()) {
+      draw(); stop()
+    } else if (canvasEl?.parentElement) {
+      cleanupVis = observeVisibility(canvasEl.parentElement, v => (v ? start() : stop()))
+    } else {
+      start()
+    }
+    return () => { stop(); ro.disconnect(); cleanupVis() }
   }, [])
 
   return (

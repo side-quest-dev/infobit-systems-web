@@ -2,6 +2,9 @@
   "name": "www-infobit",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -22,6 +25,9 @@
     "safari >= 16.4",
     "edge >= 111"
   ],
+  "overrides": {
+    "postcss": "^8.5.15"
+  },
   "devDependencies": {
     "@types/node": "^25.9.1",
     "@types/nodemailer": "^8.0.0",

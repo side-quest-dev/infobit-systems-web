@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { prefersReducedMotion, observeVisibility } from '@/lib/canvasMotion'
 
 const NODES = [
   { label: 'API Gateway', color: '#5b8dee', x: 0.50, y: 0.10, r: 6 },
@@ -159,11 +160,24 @@ export default function HeroGraphic() {
     resize()
     const ro = new ResizeObserver(() => { resize() })
     ro.observe(canvas.parentElement!)
-    rafRef.current = requestAnimationFrame(draw)
+
+    // Pause the loop when off-screen + honor reduced-motion
+    let running = false
+    const start = () => { if (!running) { running = true; rafRef.current = requestAnimationFrame(draw) } }
+    const stop = () => { running = false; cancelAnimationFrame(rafRef.current) }
+    let cleanupVis = () => {}
+    if (prefersReducedMotion()) {
+      draw(); stop()
+    } else if (canvas.parentElement) {
+      cleanupVis = observeVisibility(canvas.parentElement, v => (v ? start() : stop()))
+    } else {
+      start()
+    }
 
     return () => {
-      cancelAnimationFrame(rafRef.current)
+      stop()
       ro.disconnect()
+      cleanupVis()
     }
   }, [])
 

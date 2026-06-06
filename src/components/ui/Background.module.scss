@@ -33,7 +33,7 @@
   z-index: 0;
 
   filter: blur(160px);
-  opacity: 0;
+  opacity: var(--orb-opacity, 0.4);
 
   mix-blend-mode: screen;
 
@@ -49,11 +49,6 @@
 .orb1 { --orb-opacity: 0.5; }
 .orb2 { --orb-opacity: 0.4; }
 .orb3 { --orb-opacity: 0.25; }
-
-@keyframes orb-fade-in {
-  from { opacity: 0; }
-  to   { opacity: var(--orb-opacity, 0.4); }
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ORB 1 — BLUE (primary glow)
@@ -74,7 +69,6 @@
       transparent 70%);
 
   animation:
-    orb-fade-in 1s ease 0.6s forwards,
     orb-drift 32s ease-in-out 0.6s infinite;
 }
 
@@ -97,7 +91,6 @@
       transparent 75%);
 
   animation:
-    orb-fade-in 1s ease 0.6s forwards,
     orb-drift 32s ease-in-out -15.4s infinite;
 }
 
@@ -117,7 +110,6 @@
       transparent 70%);
 
   animation:
-    orb-fade-in 1s ease 0.6s forwards,
     orb-drift 40s ease-in-out 0.6s infinite;
 }
 
@@ -135,9 +127,14 @@
 // PERFORMANCE OPTIMIZATION
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Disable heavy effects on very small devices
-@include t.respond(t.$breakpoint-sm) {
+// On mobile/tablet, blur(160px) + mix-blend-mode on 3 fixed layers is very
+// expensive for the GPU compositor and causes scroll/paint lag. Use a cheaper
+// blur and drop the blend mode + drift animation — the glow still reads fine.
+@include t.respond(t.$breakpoint-md) {
   .orb {
-    filter: blur(100px);
+    filter: blur(90px);
+    mix-blend-mode: normal;
+    will-change: auto;
+    animation: none;
   }
 }

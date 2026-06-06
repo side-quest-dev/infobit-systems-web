@@ -69,8 +69,16 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+// Smooth scrolling only for in-page anchor navigation — NOT on the root,
+// because scroll-behavior: smooth on <html> makes reload scroll-restoration
+// visibly animate from the top to the restored position.
+@media (prefers-reduced-motion: no-preference) {
+  :focus-within {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -164,10 +172,4 @@ button {
   padding: 0 var(--space-lg);
   position: relative;
   z-index: 2;
-}
-
-// Sections below the fold — defer rendering cost until scroll
-.offscreen {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 600px;
 }

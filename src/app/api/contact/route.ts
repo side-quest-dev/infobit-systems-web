@@ -34,7 +34,13 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { name, email, company, engagement, scale, message } = await req.json()
+    const { name, email, company, engagement, scale, message, website } = await req.json()
+
+    // Honeypot — humans never fill the hidden "website" field; bots do.
+    // Return a fake success so the bot doesn't learn it was rejected.
+    if (website) {
+      return NextResponse.json({ success: true })
+    }
 
     // Validation
     if (!name || typeof name !== 'string' || name.trim().length < 2 || name.length > 100) {

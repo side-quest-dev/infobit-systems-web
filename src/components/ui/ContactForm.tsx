@@ -73,6 +73,12 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form} noValidate>
+      {/* Honeypot — hidden from humans, bots tend to fill it. Server rejects if filled. */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="cf-website">Website</label>
+        <input id="cf-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className={styles.row}>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="cf-name">Name</label>
